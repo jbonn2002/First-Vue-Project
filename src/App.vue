@@ -1,30 +1,64 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+const headers = [
+  'About',
+  'Skills & Traits',
+  'Projects',
+  'Contact',
+]
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <main>
+    <article>
+      <h1></h1>
+      <section v-for="(header, index) in headers" :key="header">
+        <h2 :id="index">{{ header }}</h2>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid sint iusto praesentium quod quibusdam cum eligendi magnam, voluptates deleniti unde, esse ab. Sint rem ipsum, eaque iusto dignissimos minima maxime quasi magnam tenetur nulla blanditiis aliquam alias libero non porro, hic cupiditate reprehenderit eius laudantium iste! Aliquam pariatur consectetur ex velit! Eligendi autem blanditiis cumque. Qui doloribus repellat quae sint totam quidem quis molestiae earum inventore aperiam! Itaque vel molestiae facilis eum eos suscipit obcaecati quidem cum, explicabo ipsa hic unde praesentium totam tempore ad! Nisi rerum quas totam mollitia similique sequi nesciunt, cum eos. Possimus quod cupiditate eveniet accusamus.
+        </p>
+      </section>
+    </article>
+    <aside>
+      <div>
+        <a v-for="(header, index) in headers" :key="header" :href="`#${index}`">
+          {{ header }}
+        </a>
+      </div>
+    </aside>
+  </main>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+
+main {
+  display: flex;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+section{
+  height: 100vh;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+article{
+  width: 75%;
+  margin-bottom: 500px;
 }
+
+aside {
+  width: 25%;
+}
+
+aside > div{
+  position: sticky;
+  top: 20px;
+  padding-left: 2em;
+}
+
+aside > div > a {
+  display: block;
+  color: aqua;
+  text-decoration: none;
+  border-left: 1px solid #ccc;
+  padding-left: 2em;
+}
+
 </style>
