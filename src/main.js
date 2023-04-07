@@ -25,7 +25,7 @@ function init(){
   renderer.setSize( window.innerWidth, window.innerHeight );
   renderer.outputEncoding = THREE.sRGBEncoding;
 
-  const torusGeometry = new THREE.TorusKnotGeometry( 5, 3, 300, 20 );
+  const torusGeometry = new THREE.TorusKnotGeometry( 5, 3, 300, 100 );
   const torusMaterial = new THREE.PointsMaterial( { 
     color: 0xb79ced, 
     size: 0.02
