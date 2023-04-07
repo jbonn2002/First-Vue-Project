@@ -12,8 +12,8 @@ const headers = [
     <article>
       <h1></h1>
       <section v-for="(header, index) in headers" :key="header">
-        <h2 :id="index">{{ header }}</h2>
-        <p>
+        <h2 class="headers" :id="index">{{ header }} </h2>
+        <p class="big-text">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid sint iusto praesentium quod quibusdam cum eligendi magnam, voluptates deleniti unde, esse ab. Sint rem ipsum, eaque iusto dignissimos minima maxime quasi magnam tenetur nulla blanditiis aliquam alias libero non porro, hic cupiditate reprehenderit eius laudantium iste! Aliquam pariatur consectetur ex velit! Eligendi autem blanditiis cumque. Qui doloribus repellat quae sint totam quidem quis molestiae earum inventore aperiam! Itaque vel molestiae facilis eum eos suscipit obcaecati quidem cum, explicabo ipsa hic unde praesentium totam tempore ad! Nisi rerum quas totam mollitia similique sequi nesciunt, cum eos. Possimus quod cupiditate eveniet accusamus.
         </p>
       </section>
@@ -55,10 +55,18 @@ aside > div{
 
 aside > div > a {
   display: block;
-  color: aqua;
+  font-size: 2.5rem;
+  color: #b79ced;
   text-decoration: none;
   border-left: 1px solid #ccc;
   padding-left: 2em;
 }
 
+.big-text{
+  font-size: 3rem;
+}
+
+.headers{
+  font-size: 4rem;
+}
 </style>
