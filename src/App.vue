@@ -1,26 +1,33 @@
 <script setup>
 
 import { ref, onMounted } from 'vue'
+import { gsap } from 'gsap';
 
-const navHeaders = [
-  'About',
-  'Skills & Traits',
-  'Projects',
-  'Contact',
-]
+const container = ref(null);
 
-const newLogos = [
-  'info',
-  'forum',
-  'upcoming',
-  'spoke',
-]
+onMounted(() => {
+  gsap.from(container.value, {
+    delay: 0.5,
+    duration: 1,
+    y: '-100',
+    autoAlpha: 0,
+    ease: "back.out(1.7)"
+  })
+})
+  
 
-const mainHeaders = [
-  'Test',
-  'Test',
-  'Test',
-]
+const items = ref([
+  {id: 'zero', header: 'About', logo: 'info'},
+  {id: 'one', header: 'Skills & Traits', logo: 'forum'},
+  {id: 'two', header: 'Projects', logo: 'upcoming'},
+  {id: 'three', header: 'Contact', logo: 'spoke'},
+]);
+
+const mainHeaders = ref([
+  'caution',
+  'caution',
+  'caution',
+]);
 
 const currentSection = ref('')
 
@@ -41,31 +48,34 @@ onMounted(() => {
 </script>
 
 <template>
-  <header>
-    <h1 v-for="(mainHeader) in mainHeaders" :key="mainHeader">{{ mainHeader }}</h1>
-  </header>
-  <main>
-    <article>
-      <section v-for="(header, index) in navHeaders" :key="header">
-        <h2 :id="index">{{ header }} </h2>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid sint iusto praesentium quod quibusdam cum eligendi magnam, voluptates deleniti unde, esse ab. Sint rem ipsum, eaque iusto dignissimos minima maxime quasi magnam tenetur nulla blanditiis aliquam alias libero non porro, hic cupiditate reprehenderit eius laudantium iste! Aliquam pariatur consectetur ex velit! Eligendi autem blanditiis cumque. Qui doloribus repellat quae sint totam quidem quis molestiae earum inventore aperiam! Itaque vel molestiae facilis eum eos suscipit obcaecati quidem cum, explicabo ipsa hic unde praesentium totam tempore ad! Nisi rerum quas totam mollitia similique sequi nesciunt, cum eos. Possimus quod cupiditate eveniet accusamus.
-        </p>
-      </section>
-    </article>
-    <aside>
-      <div>
-        {{ currentSection }}
-        <a v-for="(sideItems, index) in navHeaders" :key="sideItems" :href="`#${index}`" :class="{ active: index == currentSection}">
+  <div ref="container">
+    <header>
+      <h1 ref="contet" v-for="(mainHeader) in mainHeaders" :key="mainHeader">{{ mainHeader }}</h1>
+    </header>
+    <main>
+      <article>
+        <section v-for="(header, index) in items" :key="header">
+          <h2 :id="index">{{ header.header }} </h2>
+          <p :id="header.id">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid sint iusto praesentium quod quibusdam cum eligendi magnam, voluptates deleniti unde, esse ab. Sint rem ipsum, eaque iusto dignissimos minima maxime quasi magnam tenetur nulla blanditiis aliquam alias libero non porro, hic cupiditate reprehenderit eius laudantium iste! Aliquam pariatur consectetur ex velit! Eligendi autem blanditiis cumque. Qui doloribus repellat quae sint totam quidem quis molestiae earum inventore aperiam! Itaque vel molestiae facilis eum eos suscipit obcaecati quidem cum, explicabo ipsa hic unde praesentium totam tempore ad! Nisi rerum quas totam mollitia similique sequi nesciunt, cum eos. Possimus quod cupiditate eveniet accusamus.
+          </p>
+        </section>
+      </article>
+      <aside>
+        <div>
+          {{ currentSection }}
+          <a v-for="(item, index) in items" :key="item.id" :href="`#${index}`" :class="{ active: index == currentSection}">
             <span class="material-symbols-outlined">
-              {{ newLogos[0] }}
+              {{ item.logo }}
             </span>
-          {{ sideItems }}
-        </a>
-      </div>
-    </aside>
-  </main>
+            {{ item.header }}
+          </a>
+        </div>
+      </aside>
+    </main>
+  </div>
 </template>
+
 
 <style scoped>
 
@@ -124,25 +134,19 @@ aside a.active{
   border-color: #454ADE;
 }
 
-p{
-  padding: 4rem;
-  font-size: 3rem;
-  
-}
-
 h2{
   font-size: 4rem;
-}
-
-p:nth-child(2){
-  background: #242424;
-  margin-top: 2rem;
-}
-
-h2:nth-child(1){
   padding: 2rem 0 0 0;
 }
 
+p{
+  background: #242424;
+  margin-top: 2rem;
+  padding: 4rem;
+  font-size: 3rem;
+  border: solid 1px white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
 
 
 

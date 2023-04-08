@@ -1,10 +1,9 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
+import * as THREE from 'three';
 
 createApp(App).mount('#app')
-
-import * as THREE from 'three';
 
 let camera, scene, renderer;
 
@@ -59,3 +58,5 @@ function onWindowResize() {
     
     renderer.render( scene, camera );
   }
+
+  
