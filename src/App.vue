@@ -4,16 +4,28 @@ import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap';
 
 const container = ref(null);
+const main = ref(null);
 
 onMounted(() => {
-  gsap.from(container.value, {
-    delay: 0.5,
+  gsap.from(container.value.children, {
+    delay: 0,
+    duration: 1,
+    x: '-100',
+    autoAlpha: 0,
+    stagger: 0.3,
+    ease: "back.out(1.7)"
+  })
+})
+
+function onClick(){
+  gsap.from(main.value, {
+    delay: 0,
     duration: 1,
     y: '-100',
     autoAlpha: 0,
     ease: "back.out(1.7)"
-  })
-})
+  });
+}
   
 
 const items = ref([
@@ -52,7 +64,7 @@ onMounted(() => {
     <header>
       <h1 ref="contet" v-for="(mainHeader) in mainHeaders" :key="mainHeader">{{ mainHeader }}</h1>
     </header>
-    <main>
+    <main ref="main">
       <article>
         <section v-for="(header, index) in items" :key="header">
           <h2 :id="index">{{ header.header }} </h2>
@@ -63,8 +75,7 @@ onMounted(() => {
       </article>
       <aside>
         <div>
-          {{ currentSection }}
-          <a v-for="(item, index) in items" :key="item.id" :href="`#${index}`" :class="{ active: index == currentSection}">
+          <a v-for="(item, index) in items" :key="item.id" :href="`#${index}`" :class="{ active: index == currentSection}" @click="onClick">
             <span class="material-symbols-outlined">
               {{ item.logo }}
             </span>
@@ -145,6 +156,7 @@ p{
   padding: 4rem;
   font-size: 3rem;
   border: solid 1px white;
+  border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
