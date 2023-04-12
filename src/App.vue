@@ -2,20 +2,66 @@
 
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap';
+import SplitType from 'split-type'
 
 const container = ref(null);
+const content = ref(null)
 const main = ref(null);
+const anchor = ref(null);
+const sideElements = ref(null);
+const seperateSection = ref(null);
+const firstHeader = ref(null);
+const span = ref(null);
 
 onMounted(() => {
-  gsap.from(container.value.children, {
+
+  const animateText = new SplitType('h3', { types: 'words '});
+
+  gsap.from(animateText.words, {
+    y:24,
+    opacity: 0,
+    duration: 0.8,
+    stagger: {amount: 1},
+    ease: 'ease',
+  },)
+
+  gsap.from( 'article', {
     delay: 0,
-    duration: 1,
-    x: '-100',
+    duration: 0.5,
+    x: '-200',
     autoAlpha: 0,
-    stagger: 0.3,
+    stagger: 0.5,
     ease: "back.out(1.7)"
   })
+  
+  let timeline = gsap.timeline();
+  timeline.from(sideElements.value.children, {
+    delay: 0,
+    duration: 0.5,
+    x: '100',
+    autoAlpha: 0,
+    stagger: 0.5,
+    ease: "back.out(1.7)"
+  })
+  timeline.from(firstHeader.value, {
+    delay: 0,
+    duration: 0.5,
+    x: '-200',
+    autoAlpha: 0,
+    stagger: 0.5,
+    ease: "back.out(1.7)"
+  }, "<")
+  timeline.from(content.value, {
+    delay: 0.5,
+    duration: 0.5,
+    x: '200',
+    autoAlpha: 0,
+    ease: "back.out(1.7)"
+  }, "<")
+
+
 })
+
 
 function onClick(){
   gsap.from(main.value, {
@@ -36,9 +82,7 @@ const items = ref([
 ]);
 
 const mainHeaders = ref([
-  'caution',
-  'caution',
-  'caution',
+  {id: 'zero', header: 'JordybDev', logo: 'info'},
 ]);
 
 const currentSection = ref('')
@@ -51,7 +95,7 @@ onMounted(() => {
       }
     })
   })
-  document.querySelectorAll('article h2').forEach((section) => {
+  document.querySelectorAll('h2').forEach((section) => {
     observer.observe(section)
   })
 })
@@ -62,20 +106,24 @@ onMounted(() => {
 <template>
   <div ref="container">
     <header>
-      <h1 ref="contet" v-for="(mainHeader) in mainHeaders" :key="mainHeader">{{ mainHeader }}</h1>
+      <h1 ref="content" v-for="(mainHeader) in mainHeaders" :key="mainHeader">{{ mainHeader.header }}</h1>
     </header>
     <main ref="main">
       <article>
+        <section class="first-section" ref="seperateSection">
+          <h2 class="first-header" ref="firstHeader">Welcome</h2>
+          <h3>I am a Full Stack Web Developer <br/> based in Orange County, California</h3>
+        </section>
         <section v-for="(header, index) in items" :key="header">
-          <h2 :id="index">{{ header.header }} </h2>
+          <h2 class="headers" :id="index">{{ header.header }} </h2>
           <p :id="header.id">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid sint iusto praesentium quod quibusdam cum eligendi magnam, voluptates deleniti unde, esse ab. Sint rem ipsum, eaque iusto dignissimos minima maxime quasi magnam tenetur nulla blanditiis aliquam alias libero non porro, hic cupiditate reprehenderit eius laudantium iste! Aliquam pariatur consectetur ex velit! Eligendi autem blanditiis cumque. Qui doloribus repellat quae sint totam quidem quis molestiae earum inventore aperiam! Itaque vel molestiae facilis eum eos suscipit obcaecati quidem cum, explicabo ipsa hic unde praesentium totam tempore ad! Nisi rerum quas totam mollitia similique sequi nesciunt, cum eos. Possimus quod cupiditate eveniet accusamus.
           </p>
         </section>
       </article>
       <aside>
-        <div>
-          <a v-for="(item, index) in items" :key="item.id" :href="`#${index}`" :class="{ active: index == currentSection}" @click="onClick">
+        <div ref="sideElements">
+          <a ref="anchor" v-for="(item, index) in items" :key="item.id" :href="`#${index}`" :class="{ active: index == currentSection}" @click="onClick">
             <span class="material-symbols-outlined">
               {{ item.logo }}
             </span>
@@ -100,12 +148,13 @@ onMounted(() => {
 
 main {
   display: flex;
+  
 }
 header{
   display: flex;
   font-size: 3rem;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-end;
 }
 
 section{
@@ -145,7 +194,7 @@ aside a.active{
   border-color: #454ADE;
 }
 
-h2{
+.headers{
   font-size: 4rem;
   padding: 2rem 0 0 0;
 }
@@ -160,6 +209,14 @@ p{
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
+.first-section{
+  font-size: 5rem;
+  
+}
+
+.first-header{
+  font-size: 10rem;
+}
 
 
 </style>
