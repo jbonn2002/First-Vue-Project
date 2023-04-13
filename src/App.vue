@@ -148,8 +148,8 @@ onMounted(() => {
 
 main {
   display: flex;
-  
 }
+
 header{
   display: flex;
   font-size: 3rem;
@@ -158,6 +158,7 @@ header{
 }
 
 section{
+  max-height: 100vh;
   height: 100vh;
 }
 
@@ -218,5 +219,10 @@ p{
   font-size: 10rem;
 }
 
-
+@media screen and (max-width: 950px){
+	p{
+    height: 4rem;
+    overflow: hidden;
+  }
+}
 </style>
