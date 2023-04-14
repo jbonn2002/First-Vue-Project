@@ -10,31 +10,41 @@ gsap.registerPlugin(ScrollTrigger);
 const container = ref(null);
 const content = ref(null)
 const main = ref(null);
-const anchor = ref(null);
-const sideElements = ref(null);
 const firstHeader = ref(null);
-const span = ref(null);
 const firstSection = ref(null)
+const section = ref(null)
 
 
 onMounted(() => {
 
-  let scrollTL = gsap.timeline()
-  scrollTL.to(main.value, {
-    xPercent: -100,
+ //scrolltrigger
+  gsap.to(main.value, {
+    xPercent: -45,
     ease: "none",
     scrollTrigger: {
       trigger: container.value,
       pin: true,
       scrub: 1,
-      end: "+=3000",
       markers: true,
     }
-  })
+})
+
+gsap.from('.grids', {
+  y: -130,
+  delay: 1,
+  opacity: 0,
+  duration: 2,
+  ease: "elastic",
+  stagger: 0.5,
+  scrollTrigger: {
+    start: "left left",
+    markers: true,
+  }
+})
   
 
 
-
+//first section animation
 
   const animateText = new SplitType('h3', { types: 'words '});
   
@@ -56,14 +66,6 @@ onMounted(() => {
   })
   
   let timeline = gsap.timeline();
-  timeline.from(sideElements.value.children, {
-    delay: 0,
-    duration: 0.5,
-    x: '100',
-    autoAlpha: 0,
-    stagger: 0.5,
-    ease: "back.out(1.7)"
-  })
   timeline.from(firstHeader.value, {
     delay: 0,
     duration: 0.5,
@@ -106,20 +108,7 @@ const mainHeaders = ref([
   {id: 'zero', header: 'JordybDev', logo: 'info'},
 ]);
 
-const currentSection = ref('')
 
-onMounted(() => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.intersectionRatio > 0){
-        currentSection.value = entry.target.getAttribute('id')
-      }
-    })
-  })
-  document.querySelectorAll('h2').forEach((section) => {
-    observer.observe(section)
-  })
-})
 
 
 </script>
@@ -135,23 +124,15 @@ onMounted(() => {
           <h2 class="first-header" ref="firstHeader">Welcome</h2>
           <h3>I am a Full Stack Web Developer <br/> based in Orange County, California</h3>
         </section>
-        <section v-for="(header, index) in items" :key="header" ref="section" :class="sections">
-          <h2 class="headers" :id="index">{{ header.header }} </h2>
-          <p :id="header.id">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid sint iusto praesentium quod quibusdam cum eligendi magnam, voluptates deleniti unde, esse ab. Sint rem ipsum, eaque iusto dignissimos minima maxime quasi magnam tenetur nulla blanditiis aliquam alias libero non porro, hic cupiditate reprehenderit eius laudantium iste! Aliquam pariatur consectetur ex velit! Eligendi autem blanditiis cumque. Qui doloribus repellat quae sint totam quidem quis molestiae earum inventore aperiam! Itaque vel molestiae facilis eum eos suscipit obcaecati quidem cum, explicabo ipsa hic unde praesentium totam tempore ad! Nisi rerum quas totam mollitia similique sequi nesciunt, cum eos. Possimus quod cupiditate eveniet accusamus.
-          </p>
+        <section class="gridContainer">
+          <div class="grids" v-for="(header, index) in items" :key="header" ref="section" :id="header.id">
+            <h2 class="headers" >{{ header.header }} </h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, quibusdam?
+            </p>
+          </div>
         </section>
       </article>
-      <aside>
-        <div ref="sideElements">
-          <a ref="anchor" v-for="(item, index) in items" :key="item.id" :href="`#${index}`" :class="{ active: index == currentSection}" @click="onClick">
-            <span class="material-symbols-outlined">
-              {{ item.logo }}
-            </span>
-            {{ item.header }}
-          </a>
-        </div>
-      </aside>
     </main>
   </div>
 </template>
@@ -159,30 +140,43 @@ onMounted(() => {
 
 <style >
 
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 700,
-  'GRAD' 0,
-  'opsz' 48
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
-
-main {
+article{
   display: flex;
 }
 
+.gridContainer{
+  display: grid;
+  grid-template-areas: "a a" "a a";
+  height: 100vh;
+  width: 100vw;
+}
+
+.grids{
+  height: 5rem;
+  max-width: 20vw;
+}
+
+.headers{
+  font-size: 3rem;
+}
+
 header{
+  max-width: 100vw;
   display: flex;
   font-size: 3rem;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
-section{
-  max-width: 100vw;
+.first-section{
+  font-size: 5rem;
   width: 100vw;
-  max-height: 100vh;
   height: 100vh;
 }
 
@@ -190,56 +184,15 @@ section > * {
   margin: 0 0 0 20px;
 }
 
-article{
-  width: 100%;
-  display: flex;
-}
-
-aside {
-  width: 25%;
-  align-self: flex-start;
-}
-
-aside > div{
-  position: sticky;
-  top: 20px;
-  padding-left: 2em;
-}
-
-aside > div > a {
-  display: block;
-  font-size: 2.5rem;
-  color: #b79ced;
-  text-decoration: none;
-  border-left: 1px solid #b79ced;
-  padding-left: 2em;
-}
-
-aside a.active{
-  font-weight: bold;
-  color: #454ADE;
-  border-color: #454ADE;
-}
-
-.headers{
-  font-size: 4rem;
-  padding: 2rem 0 0 0;
-}
-
 p{
   background: #242424;
-  margin-top: 2rem;
-  padding: 4rem;
+  padding: 2rem;
   font-size: 3rem;
   border: solid 1px white;
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.first-section{
-  font-size: 5rem;
-  
-}
 
 .first-header{
   font-size: 10rem;
