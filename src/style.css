@@ -23,11 +23,13 @@
 
 canvas{
   position: absolute;
-  top: 150vh;
-  left: 0;
+  top: 0;
+  left: 100vw;
   z-index: -1;
 }
 
 body {
+  height: 100vh;
   margin: 0;
+  width: 500vw;
 }

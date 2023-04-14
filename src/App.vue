@@ -3,20 +3,41 @@
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap';
 import SplitType from 'split-type'
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const container = ref(null);
 const content = ref(null)
 const main = ref(null);
 const anchor = ref(null);
 const sideElements = ref(null);
-const seperateSection = ref(null);
 const firstHeader = ref(null);
 const span = ref(null);
+const firstSection = ref(null)
+
 
 onMounted(() => {
 
-  const animateText = new SplitType('h3', { types: 'words '});
+  let scrollTL = gsap.timeline()
+  scrollTL.to(main.value, {
+    xPercent: -100,
+    ease: "none",
+    scrollTrigger: {
+      trigger: container.value,
+      pin: true,
+      scrub: 1,
+      end: "+=3000",
+      markers: true,
+    }
+  })
+  
 
+
+
+
+  const animateText = new SplitType('h3', { types: 'words '});
+  
   gsap.from(animateText.words, {
     y:24,
     opacity: 0,
@@ -110,11 +131,11 @@ onMounted(() => {
     </header>
     <main ref="main">
       <article>
-        <section class="first-section" ref="seperateSection">
+        <section class="first-section" ref="firstSection">
           <h2 class="first-header" ref="firstHeader">Welcome</h2>
           <h3>I am a Full Stack Web Developer <br/> based in Orange County, California</h3>
         </section>
-        <section v-for="(header, index) in items" :key="header">
+        <section v-for="(header, index) in items" :key="header" ref="section" :class="sections">
           <h2 class="headers" :id="index">{{ header.header }} </h2>
           <p :id="header.id">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid sint iusto praesentium quod quibusdam cum eligendi magnam, voluptates deleniti unde, esse ab. Sint rem ipsum, eaque iusto dignissimos minima maxime quasi magnam tenetur nulla blanditiis aliquam alias libero non porro, hic cupiditate reprehenderit eius laudantium iste! Aliquam pariatur consectetur ex velit! Eligendi autem blanditiis cumque. Qui doloribus repellat quae sint totam quidem quis molestiae earum inventore aperiam! Itaque vel molestiae facilis eum eos suscipit obcaecati quidem cum, explicabo ipsa hic unde praesentium totam tempore ad! Nisi rerum quas totam mollitia similique sequi nesciunt, cum eos. Possimus quod cupiditate eveniet accusamus.
@@ -136,7 +157,7 @@ onMounted(() => {
 </template>
 
 
-<style scoped>
+<style >
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -145,6 +166,7 @@ onMounted(() => {
   'GRAD' 0,
   'opsz' 48
 }
+
 
 main {
   display: flex;
@@ -158,6 +180,8 @@ header{
 }
 
 section{
+  max-width: 100vw;
+  width: 100vw;
   max-height: 100vh;
   height: 100vh;
 }
@@ -167,11 +191,13 @@ section > * {
 }
 
 article{
-  width: 75%;
+  width: 100%;
+  display: flex;
 }
 
 aside {
   width: 25%;
+  align-self: flex-start;
 }
 
 aside > div{
