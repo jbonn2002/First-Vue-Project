@@ -15,16 +15,19 @@ const firstSection = ref(null)
 const section = ref(null)
 
 
-onMounted(() => {
 
+onMounted(() => {
+  
+  let sections = gsap.utils.toArray(".panel");
  //scrolltrigger
-  gsap.to(main.value, {
-    xPercent: -45,
+  gsap.to(sections, {
+    xPercent: -100 * (sections.length - 1),
     ease: "none",
     scrollTrigger: {
       trigger: container.value,
       pin: true,
-      scrub: 1,
+      scrub: 0.1,
+      end: '+=3000',
       markers: true,
     }
 })
@@ -38,7 +41,7 @@ gsap.from('.grids', {
   stagger: 0.5,
   scrollTrigger: {
     start: "left left",
-    markers: true,
+    toggleActions: "play none none reset",
   }
 })
   
@@ -56,14 +59,14 @@ gsap.from('.grids', {
     ease: 'ease',
   },)
 
-  gsap.from( 'article', {
-    delay: 0,
-    duration: 0.5,
-    x: '-200',
-    autoAlpha: 0,
-    stagger: 0.5,
-    ease: "back.out(1.7)"
-  })
+  // gsap.from( 'article', {
+  //   delay: 0,
+  //   duration: 0.5,
+  //   x: '-200',
+  //   autoAlpha: 0,
+  //   stagger: 0.5,
+  //   ease: "back.out(1.7)"
+  // })
   
   let timeline = gsap.timeline();
   timeline.from(firstHeader.value, {
@@ -114,17 +117,19 @@ const mainHeaders = ref([
 </script>
 
 <template>
-  <div ref="container">
-    <header>
-      <h1 ref="content" v-for="(mainHeader) in mainHeaders" :key="mainHeader">{{ mainHeader.header }}</h1>
-    </header>
+  <div ref="container" class="container">
     <main ref="main">
-      <article>
-        <section class="first-section" ref="firstSection">
+        <section class="headerSection">
+          <header>
+            <h1 ref="content" v-for="(mainHeader) in mainHeaders" :key="mainHeader">{{ mainHeader.header }}</h1>
+            <span>Scroll to navigate the page</span>
+          </header>
+        </section>
+        <section class="first-section panel" ref="firstSection">
           <h2 class="first-header" ref="firstHeader">Welcome</h2>
           <h3>I am a Full Stack Web Developer <br/> based in Orange County, California</h3>
         </section>
-        <section class="gridContainer">
+        <section class="gridContainer panel">
           <div class="grids" v-for="(header, index) in items" :key="header" ref="section" :id="header.id">
             <h2 class="headers" >{{ header.header }} </h2>
             <p>
@@ -132,8 +137,7 @@ const mainHeaders = ref([
             </p>
           </div>
         </section>
-      </article>
-    </main>
+      </main>
   </div>
 </template>
 
@@ -146,9 +150,14 @@ const mainHeaders = ref([
   border: 0;
 }
 
-article{
+main{
   display: flex;
 }
+
+.container{
+  height: 100%;
+}
+
 
 .gridContainer{
   display: grid;
@@ -162,16 +171,25 @@ article{
   max-width: 20vw;
 }
 
+.headerSection{
+  display: grid;
+  max-width: 20vw;
+  background: #b79ced;
+  z-index: 3;
+}
+
 .headers{
+  font-size: 3rem;
+  padding: 2rem 0 0 0;
+}
+
+
+header{
   font-size: 3rem;
 }
 
-header{
-  max-width: 100vw;
-  display: flex;
-  font-size: 3rem;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+h1{
+  padding: 0 50px 0 0;
 }
 
 .first-section{
