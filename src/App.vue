@@ -64,14 +64,14 @@ gsap.from('.grids', {
     ease: 'ease',
   },)
 
-  // gsap.from( 'article', {
-  //   delay: 0,
-  //   duration: 0.5,
-  //   x: '-200',
-  //   autoAlpha: 0,
-  //   stagger: 0.5,
-  //   ease: "back.out(1.7)"
-  // })
+  gsap.from( 'a', {
+    delay: 0,
+    duration: 0.4,
+    x: '-200',
+    autoAlpha: 0,
+    stagger: 0.5,
+    ease: "back.out(1.7)"
+  })
   
   let timeline = gsap.timeline();
   timeline.from(firstHeader.value, {
@@ -184,6 +184,7 @@ main{
 }
 
 .headerSection{
+  color: #242424;
   display: flex;
   text-align: center;
   max-width: 20vw;
@@ -193,6 +194,7 @@ main{
 }
 
 .headers{
+  color: white;
   font-size: 3rem;
   padding: 2rem 0 0 0;
 }
@@ -202,7 +204,7 @@ main{
 }
 
 a{
-  color: white;
+  color: #242424;
   display: flex;
   justify-content: center;
 }
@@ -216,12 +218,22 @@ header{
   font-size: 3rem;
 }
 
+.headerDiv{
+  padding: 2rem 2rem 2rem 1rem;
+  
+}
+
 h1{
-  padding: 2rem 0 0 0;
+  background: #957fef;
+  border-radius: 25px;
 }
 
 
 .first-section{
+  color: #b79ced;
+  /* background: #242424; */
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
   font-size: 5rem;
   width: 100vw;
   height: 100vh;
@@ -232,7 +244,7 @@ section > * {
 }
 
 p{
-  background: #242424;
+  background: #957fef;
   padding: 2rem;
   font-size: 3rem;
   border: solid 1px white;
