@@ -4,6 +4,11 @@ import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap';
 import SplitType from 'split-type'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faGithub, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+
+library.add(faGithub, faTwitter, faLinkedin)
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -121,9 +126,16 @@ const mainHeaders = ref([
     <main ref="main">
         <section class="headerSection">
           <header>
-            <h1 ref="content" v-for="(mainHeader) in mainHeaders" :key="mainHeader">{{ mainHeader.header }}</h1>
-            <span>Scroll to navigate the page</span>
-          </header>
+              <div class="headerDiv">
+                <h1 ref="content" v-for="(mainHeader) in mainHeaders" :key="mainHeader">{{ mainHeader.header }}</h1>
+                <span>Scroll to navigate the page</span>
+              </div>
+              <div class="links">
+                <a href="https://github.com/jbonn2002" target="_blank" rel="noopener noreferrer">GitHub<font-awesome-icon icon="fa-brands fa-github" /></a>
+                <a href="https://twitter.com/JordybDev" target="_blank" rel="noopener noreferrer">Twitter<font-awesome-icon icon="fa-brands fa-twitter" /></a>
+                <a href="https://www.linkedin.com/in/jordan-bonnaire/" target="_blank" rel="noopener noreferrer">Linkedin<font-awesome-icon icon="fa-brands fa-linkedin" /></a>
+              </div>
+            </header>
         </section>
         <section class="first-section panel" ref="firstSection">
           <h2 class="first-header" ref="firstHeader">Welcome</h2>
@@ -172,10 +184,12 @@ main{
 }
 
 .headerSection{
-  display: grid;
+  display: flex;
+  text-align: center;
   max-width: 20vw;
   background: #b79ced;
   z-index: 3;
+  flex-wrap: wrap;
 }
 
 .headers{
@@ -183,14 +197,29 @@ main{
   padding: 2rem 0 0 0;
 }
 
+.headerDiv{
+  justify-self: center;
+}
+
+a{
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+a:hover{
+  color: #957fef;
+}
 
 header{
+  display: grid;
   font-size: 3rem;
 }
 
 h1{
-  padding: 0 50px 0 0;
+  padding: 2rem 0 0 0;
 }
+
 
 .first-section{
   font-size: 5rem;
@@ -216,10 +245,4 @@ p{
   font-size: 10rem;
 }
 
-@media screen and (max-width: 950px){
-	p{
-    height: 4rem;
-    overflow: hidden;
-  }
-}
 </style>
