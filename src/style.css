@@ -36,3 +36,11 @@ body {
   width: 200vw;
   color: black;
 }
+
+@media screen and (max-width: 660px){
+	
+  .headerSection{
+    justify-content: center;
+  }
+
+}
