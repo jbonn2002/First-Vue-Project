@@ -106,10 +106,10 @@ function onClick(){
   
 
 const items = ref([
-  {id: 'zero', header: 'About', logo: 'info'},
-  {id: 'one', header: 'Skills & Traits', logo: 'forum'},
-  {id: 'two', header: 'Projects', logo: 'upcoming'},
-  {id: 'three', header: 'Contact', logo: 'spoke'},
+  {id: 'zero', header: 'About', description: "Check out who I am ", buttonText: 'Go',},
+  {id: 'one', header: 'Skills & Traits', description: 'See if my stack is right for you', buttonText: 'Go',},
+  {id: 'two', header: 'Projects', description: 'Look at some of my work', buttonText: 'Go',},
+  {id: 'three', header: 'Contact', description: 'Get in touch with any inquiries or job opportunities', buttonText: 'Go',},
 ]);
 
 const mainHeaders = ref([
@@ -144,9 +144,12 @@ const mainHeaders = ref([
         <section class="gridContainer panel">
           <div class="grids" v-for="(header, index) in items" :key="header" ref="section" :id="header.id">
             <h2 class="headers" >{{ header.header }} </h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, quibusdam?
-            </p>
+            <div class="divTest">
+              <p>
+                {{header.description}}
+              </p>
+              <button class="button-33" role="button">{{ header.buttonText }}</button>
+            </div>
           </div>
         </section>
       </main>
@@ -197,6 +200,7 @@ main{
   color: white;
   font-size: 3vw;
   padding: 2rem 0 0 0;
+  text-align: center;
 }
 
 .headerDiv{
@@ -251,13 +255,43 @@ section > * {
   margin: 0 0 0 20px;
 }
 
-p{
+.divTest{
   background: #957fef;
   padding: 2rem;
   font-size: 1.5vw;
   border: solid 1px white;
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  text-align: center;
 }
+
+
+/* Button */
+
+.button-33 {
+  background-color: black;
+  border-radius: 100px;
+  box-shadow: rgba(149,127,239,.35) 0 -25px 18px -14px inset,rgba(149,127,239,.25) 0 1px 2px,rgba(149,127,239,.25) 0 2px 4px,rgba(149,127,239,.25) 0 4px 8px,rgba(149,127,239,.25) 0 8px 16px,rgba(149,127,239,.25) 0 16px 32px;
+  color: white;
+  cursor: pointer;
+  justify-content: center;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  max-width: 65px;
+}
+
+.button-33:hover {
+  box-shadow: rgba(149,127,239,.35) 0 -25px 18px -14px inset,rgba(149,127,239,.25) 0 1px 2px,rgba(149,127,239,.25) 0 2px 4px,rgba(149,127,239,.25) 0 4px 8px,rgba(149,127,239,.25) 0 8px 16px,rgba(149,127,239,.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
 
 </style>
