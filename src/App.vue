@@ -195,7 +195,7 @@ main{
 
 .headers{
   color: white;
-  font-size: 2vw;
+  font-size: 3vw;
   padding: 2rem 0 0 0;
 }
 
@@ -204,9 +204,12 @@ main{
 }
 
 h2{
-  font-size: 8vw;
+  font-size: 10vw;
 }
 
+h3{
+  font-size: 7vw;
+}
 
 a{
   color: #242424;
@@ -251,7 +254,7 @@ section > * {
 p{
   background: #957fef;
   padding: 2rem;
-  font-size: 1vw;
+  font-size: 2vw;
   border: solid 1px white;
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;

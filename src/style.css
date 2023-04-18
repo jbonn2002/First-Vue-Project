@@ -39,6 +39,11 @@ body {
 
 @media screen and (max-width: 660px){
 	
+  *{
+    overflow-y: none;
+  }
+
+
   .headerSection{
     justify-content: center;
   }
