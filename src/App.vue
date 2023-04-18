@@ -195,13 +195,18 @@ main{
 
 .headers{
   color: white;
-  font-size: 3rem;
+  font-size: 2vw;
   padding: 2rem 0 0 0;
 }
 
 .headerDiv{
   justify-self: center;
 }
+
+h2{
+  font-size: 8vw;
+}
+
 
 a{
   color: #242424;
@@ -215,7 +220,7 @@ a:hover{
 
 header{
   display: grid;
-  font-size: 3rem;
+  font-size: 2vw;
 }
 
 .headerDiv{
@@ -234,7 +239,7 @@ h1{
   /* background: #242424; */
   background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
-  font-size: 5rem;
+  font-size: 3vw;
   width: 100vw;
   height: 100vh;
 }
@@ -246,15 +251,10 @@ section > * {
 p{
   background: #957fef;
   padding: 2rem;
-  font-size: 3rem;
+  font-size: 1vw;
   border: solid 1px white;
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
-
-
-.first-header{
-  font-size: 10rem;
 }
 
 </style>
