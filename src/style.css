@@ -19,6 +19,9 @@
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
   touch-action: pan-y;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 
