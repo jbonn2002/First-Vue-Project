@@ -209,7 +209,7 @@ function onWindowResize() {
               <p>
                 {{header.description}}
               </p>
-              <Button @click="this.$router.push( header.href )">{{ header.buttonText }}</Button>
+              <Button><RouterLink :to='header.href'>{{ header.buttonText }}</RouterLink></Button>
             </div>
           </div>
         </section>

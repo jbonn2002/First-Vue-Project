@@ -20,7 +20,7 @@ const items = ref([
         
 <template>
     <div>
-        <Button @click="this.$router.push('/')">Back</Button>
+        <Button><RouterLink to='/'>Back</RouterLink></Button>
     </div>
     <div class="container">
 	    <h3 class="observe-two">Skills & Traits</h3>

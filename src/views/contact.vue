@@ -5,7 +5,7 @@ import Button from "../components/button.vue"
 
 <template>
     <div>
-        <Button @click="this.$router.push('/')">Back</Button>
+        <Button><RouterLink to='/'>Back</RouterLink></Button>
     </div>
     <div class="container">
 	    <h3 class="observe-four">Contact Me</h3>
