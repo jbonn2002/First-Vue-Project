@@ -8,6 +8,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faGithub, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import * as THREE from 'three';
+import Button from "../components/button.vue"
 
 library.add(faGithub, faTwitter, faLinkedin)
 
@@ -107,10 +108,10 @@ function onClick(){
   
 
 const items = ref([
-  {id: 'zero', header: 'About', description: "Check out who I am ", buttonText: 'Go',},
-  {id: 'one', header: 'Skills & Traits', description: 'See if my stack is right for you', buttonText: 'Go',},
-  {id: 'two', header: 'Projects', description: 'Look at some of my work', buttonText: 'Go',},
-  {id: 'three', header: 'Contact', description: 'Get in touch with any inquiries or job opportunities', buttonText: 'Go',},
+  {id: 'zero', header: 'About', description: "Check out who I am ", buttonText: 'Go', href:'/about'},
+  {id: 'one', header: 'Skills & Traits', description: 'See if my stack is right for you', buttonText: 'Go', href:'/skills&traits'},
+  {id: 'two', header: 'Projects', description: 'Look at some of my work', buttonText: 'Go', href:'/projects'},
+  {id: 'three', header: 'Contact', description: 'Get in touch with any inquiries or job opportunities', buttonText: 'Go', href:'/contact'},
 ]);
 
 const mainHeaders = ref([
@@ -175,8 +176,9 @@ function onWindowResize() {
     renderer.render( scene, camera );
   }
 
-
-
+// let testOne = () => {
+//   window.location.href =
+// }
 
 </script>
 
@@ -190,9 +192,9 @@ function onWindowResize() {
                 <span>Scroll to navigate the page</span>
               </div>
               <div class="links">
-                <a href="https://github.com/jbonn2002" target="_blank" rel="noopener noreferrer">GitHub<font-awesome-icon icon="fa-brands fa-github" /></a>
-                <a href="https://twitter.com/JordybDev" target="_blank" rel="noopener noreferrer">Twitter<font-awesome-icon icon="fa-brands fa-twitter" /></a>
-                <a href="https://www.linkedin.com/in/jordan-bonnaire/" target="_blank" rel="noopener noreferrer">Linkedin<font-awesome-icon icon="fa-brands fa-linkedin" /></a>
+                <a class="logos" href="https://github.com/jbonn2002" target="_blank" rel="noopener noreferrer">GitHub<font-awesome-icon icon="fa-brands fa-github" /></a>
+                <a class="logos" href="https://twitter.com/JordybDev" target="_blank" rel="noopener noreferrer">Twitter<font-awesome-icon icon="fa-brands fa-twitter" /></a>
+                <a class="logos" href="https://www.linkedin.com/in/jordan-bonnaire/" target="_blank" rel="noopener noreferrer">Linkedin<font-awesome-icon icon="fa-brands fa-linkedin" /></a>
               </div>
             </header>
         </section>
@@ -207,7 +209,7 @@ function onWindowResize() {
               <p>
                 {{header.description}}
               </p>
-              <button class="button-33" role="button">{{ header.buttonText }}</button>
+              <Button @click="this.$router.push( header.href )">{{ header.buttonText }}</Button>
             </div>
           </div>
         </section>
@@ -230,6 +232,11 @@ main{
 
 .container{
   height: 100%;
+}
+
+a{
+  color: white;
+  text-decoration: none;
 }
 
 
@@ -274,13 +281,13 @@ h3{
   font-size: 4vw;
 }
 
-a{
+.logos{
   color: #242424;
   display: flex;
   justify-content: center;
 }
 
-a:hover{
+.logos:hover{
   color: #957fef;
 }
 
@@ -323,34 +330,5 @@ section > * {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   text-align: center;
 }
-
-
-/* Button */
-
-.button-33 {
-  background-color: black;
-  border-radius: 100px;
-  box-shadow: rgba(149,127,239,.35) 0 -25px 18px -14px inset,rgba(149,127,239,.25) 0 1px 2px,rgba(149,127,239,.25) 0 2px 4px,rgba(149,127,239,.25) 0 4px 8px,rgba(149,127,239,.25) 0 8px 16px,rgba(149,127,239,.25) 0 16px 32px;
-  color: white;
-  cursor: pointer;
-  justify-content: center;
-  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
-  padding: 7px 20px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 250ms;
-  border: 0;
-  font-size: 16px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  max-width: 65px;
-}
-
-.button-33:hover {
-  box-shadow: rgba(149,127,239,.35) 0 -25px 18px -14px inset,rgba(149,127,239,.25) 0 1px 2px,rgba(149,127,239,.25) 0 2px 4px,rgba(149,127,239,.25) 0 4px 8px,rgba(149,127,239,.25) 0 8px 16px,rgba(149,127,239,.25) 0 16px 32px;
-  transform: scale(1.05) rotate(-1deg);
-}
-
 
 </style>
