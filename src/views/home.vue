@@ -7,8 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faGithub, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import * as THREE from 'three';
 import Button from "../components/button.vue"
+import Three from "../components/threejs.vue"
+
 
 library.add(faGithub, faTwitter, faLinkedin)
 
@@ -119,63 +120,6 @@ const mainHeaders = ref([
 ]);
 
 
-// ThreeJs Background Code
-
-
-let camera, scene, renderer;
-
-let torus;
-
-init();
-animate();
-
-function init(){
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color( 0x00000 );
-  camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
-  renderer = new THREE.WebGLRenderer({
-      canvas: document.querySelector('#bg'),
-      antialias: true
-  });
-  renderer.setSize( window.innerWidth, window.innerHeight );
-  renderer.outputEncoding = THREE.sRGBEncoding;
-
-  const torusGeometry = new THREE.TorusKnotGeometry( 5, 3, 300, 100 );
-  const torusMaterial = new THREE.PointsMaterial( { 
-    color: 0xb79ced, 
-    size: 0.02
-  } );
-  torus = new THREE.Points( torusGeometry, torusMaterial );
-  scene.add( torus );
-
-  camera.position.z = 5;
-
-  window.addEventListener('resize', onWindowResize, false)
-}
-
-function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-  
-  
-  }
-  
-  function animate() {
-    requestAnimationFrame( animate );
-  
-    render();
-  }
-  
-  function render() {
-    
-    torus.rotation.x += 0.001;
-    torus.rotation.y += 0.001;
-    
-    renderer.render( scene, camera );
-  }
-
 // let testOne = () => {
 //   window.location.href =
 // }
@@ -183,7 +127,9 @@ function onWindowResize() {
 </script>
 
 <template>
+  <Three/>
   <div ref="container" class="container">
+    <canvas ref="canvas"></canvas>
     <main ref="main">
         <section class="headerSection">
           <header>

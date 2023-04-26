@@ -46,6 +46,10 @@ button{
     max-height: 100vh;
 }
 
+div{
+	color: #957fef;
+}
+
 h1{  
 color: white;
 font-size: 5rem;
