@@ -20,9 +20,8 @@ button{
     justify-content: center;
 }
 
-*{
-    max-width: 100vw;
-    max-height: 100vh;
+body{
+    height: 100vh;
 }
 
 h1{  

@@ -70,3 +70,16 @@ function onWindowResize() {
 <template>
     <div id="threejs-container"></div>
 </template>
+
+<style>
+
+canvas{
+  position: fixed;
+  top: 0;
+  left: 0vw;
+  z-index: -1;
+  max-height: 100vh;
+  max-width: 100vw;
+}
+
+</style>
