@@ -155,7 +155,7 @@ const mainHeaders = ref([
               <p>
                 {{header.description}}
               </p>
-              <Button><RouterLink :to='header.href'>{{ header.buttonText }}</RouterLink></Button>
+              <Button><a :href="header.href">{{ header.buttonText }}</a></Button>
             </div>
           </div>
         </section>
@@ -184,7 +184,6 @@ a{
   color: white;
   text-decoration: none;
 }
-
 
 .gridContainer{
   display: grid;

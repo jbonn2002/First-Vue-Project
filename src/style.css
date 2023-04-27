@@ -25,13 +25,12 @@
 }
 
 
-
-
 body {
   height: 100vh;
   width: 200vw;
   color: black;
 }
+
 
 @media screen and (max-width: 660px){
 	

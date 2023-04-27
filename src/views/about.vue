@@ -15,6 +15,12 @@ import Button from "../components/button.vue"
 </template>
 
 <style scoped>
+
+h1, p{
+    padding: 2rem;
+}
+
+
 button{
     display: flex;
     justify-content: center;
@@ -22,13 +28,13 @@ button{
 
 body{
     height: 100vh;
+    
 }
-
 h1{  
 color: white;
 font-size: 5rem;
 background: none;
-border-radius: none;
+border-radius: none
 }
 
 p{
