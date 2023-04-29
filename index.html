@@ -8,6 +8,21 @@
     <title>JordybDev</title>
   </head>
   <body>
+    <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <div class="row gtr-uniform">
+      <input type="hidden" name="form-name" value="contact"/>
+        <div class="text"><input type="text" name="name" id="name" placeholder="Name" /></div>
+        <div class="email"><input type="email" name="email" id="email" placeholder="Email" /></div>
+        <div class="subject"><input type="text" name="subject" id="subject" placeholder="Subject" /></div>
+        <div class="message"><textarea name="message" id="message" placeholder="Message" rows="6"></textarea></div>
+        <div class="buttons">
+          <ul class="actions">
+            <li><input type="submit" class="primary" value="Send Message" /></li>
+            <li><input type="reset" value="Reset Form" /></li>
+          </ul>
+        </div>
+      </div>
+    </form>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>
