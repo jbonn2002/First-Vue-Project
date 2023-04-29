@@ -12,7 +12,7 @@ import Three from "../components/threejs.vue"
     <div class="container">
 	    <h3 class="observe-four">Contact Me</h3>
 	    <p>Let's collaborate on bringing your vision to life - use my contact form to get in touch and I'll be excited to learn more about your goals.</p>
-	    <form method="post" data-netlify="true" onSubmit="submit">
+	    <form method="POST" data-netlify="true">
 		    <div class="row gtr-uniform">
 			    <div class="text"><input type="text" name="name" id="name" placeholder="Name" /></div>
 			    <div class="email"><input type="email" name="email" id="email" placeholder="Email" /></div>
