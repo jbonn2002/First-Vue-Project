@@ -1,5 +1,6 @@
 <script setup>
 import Button from "../components/button.vue"
+import Three from "../components/threejs.vue"
 
 </script>
 
@@ -7,6 +8,7 @@ import Button from "../components/button.vue"
 
 
 <template>
+    <Three/>
     <div>
         <Button><RouterLink to='/'>Back</RouterLink></Button>
     </div>
@@ -24,23 +26,30 @@ h1, p{
 button{
     display: flex;
     justify-content: center;
+    margin: 1rem;
 }
 
 body{
     height: 100vh;
-    
+    width: 100vw;
 }
+
 h1{  
 color: white;
 font-size: 5rem;
-background: none;
-border-radius: none
+background: rgba(0, 0, 0, 0.9);
+border-radius: none;
+width: fit-content;
 }
 
 p{
+    background: #242424;
+    margin: 2rem;
     color: white;
     font-size: 3rem;
     max-width: 100vw;
+    width: 75vw;
+    border-radius: 25px;
 }
 
 </style>

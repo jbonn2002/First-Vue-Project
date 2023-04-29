@@ -1,17 +1,20 @@
 <script setup>
 import Button from "../components/button.vue"
+import Three from "../components/threejs.vue"
+
 
 </script>
 
 
 
 <template>
+	<Three/>
     <div>
         <Button><RouterLink to='/'>Back</RouterLink></Button>
     </div>
     <div class="container">
 	    <h3 class="observe-three">A Few Projects</h3>
-	    <p>My personal projects highlight my creativity and innovation in web development, as well as my ability to work with various languages, libraries, and frameworks. </p>
+	    <span>My personal projects highlight my creativity and innovation in web development, as well as my ability to work with various languages, libraries, and frameworks. </span>
 	    <div class="features">
 		    <article>
 			    <div class="inner">
@@ -39,25 +42,34 @@ import Button from "../components/button.vue"
 button{
     display: flex;
     justify-content: center;
+	margin: 1rem;
 }
 
-*{
-    max-width: 100vw;
-    max-height: 100vh;
+.features{
+	background: #242424;
+	width: 75vw;
+    margin: 2rem;
+	padding: 1rem;
+}
+
+h3, span{
+	display: flex;
+	margin: 2rem;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 25px;
+    width: fit-content;
 }
 
 div{
 	color: #957fef;
 }
 
-h1{  
-color: white;
-font-size: 5rem;
-background: none;
-border-radius: none;
+h4{  
+font-size: 2rem;
+
 }
 
-p{
+span, p{
     color: white;
     font-size: 3rem;
     max-width: 100vw;

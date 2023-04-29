@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import Button from "../components/button.vue"
+import Three from "../components/threejs.vue"
 
 const items = ref([
     { item: 'HTML, CSS, JavaScript' }, 
@@ -19,13 +20,16 @@ const items = ref([
 
         
 <template>
+    <Three/>
     <div>
         <Button><RouterLink to='/'>Back</RouterLink></Button>
     </div>
     <div class="container">
 	    <h3 class="observe-two">Skills & Traits</h3>
 	    <p>Here are some of my skills and traits that I think are important and could provide value to whomever is reading.</p>
-		<li v-for="item in items">{{ item.item }}</li>
+    <div class="list-container">
+        <li v-for="item in items">{{ item.item }}</li>
+    </div>
 		
     </div>
 </template>
@@ -39,6 +43,7 @@ const items = ref([
 button{
     display: flex;
     justify-content: center;
+    margin: 1rem;
 }
 
 *{
@@ -47,23 +52,39 @@ button{
 }
 
 div{  
-color: white;
-font-size: 5rem;
+    color: white;
+    font-size: 4rem;
+    width: 100vw;
+}
+
+h3, p{
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 25px;
+    width: fit-content;
+}
+
+h3{
+    margin: 2rem;
 }
 
 p{
     color: white;
-    font-size: 3rem;
+    font-size: 2.5rem;
     max-width: 100vw;
-}
-
-ul{
-    list-style: circle;
-    padding: 10px;
+    margin: 2rem;
+    
 }
 
 li{
     list-style: circle;
     padding: 10px;
 }
+
+.list-container{
+    background: #242424;
+    width: 75vw;
+    margin: 2rem;
+    border-radius: 25px;
+}
+
 </style>
