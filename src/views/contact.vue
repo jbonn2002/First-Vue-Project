@@ -12,8 +12,9 @@ import Three from "../components/threejs.vue"
     <div class="container">
 	    <h3 class="observe-four">Contact Me</h3>
 	    <p>Let's collaborate on bringing your vision to life - use my contact form to get in touch and I'll be excited to learn more about your goals.</p>
-	    <form method="POST" data-netlify="true" onsubmit="submit">
+	    <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
 		    <div class="row gtr-uniform">
+				<input type="hidden" name="form-name" value="contact"/>
 			    <div class="text"><input type="text" name="name" id="name" placeholder="Name" /></div>
 			    <div class="email"><input type="email" name="email" id="email" placeholder="Email" /></div>
 			    <div class="subject"><input type="text" name="subject" id="subject" placeholder="Subject" /></div>
