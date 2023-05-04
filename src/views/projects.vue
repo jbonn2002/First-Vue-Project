@@ -19,18 +19,28 @@ import Three from "../components/threejs.vue"
 		    <article>
 			    <div class="inner">
 				    <h4>Solar System Website</h4>
+					<img src="../assets/apurba-nag-unsplash.jpg"/>
 				    <p>Website that showcases HTML, CSS, and JavaScript(three.js and gsap)</p>
 			    </div>
 		    </article>
 		    <article>
 			    <div class="inner">
 				    <h4>Procedural Hex World</h4>
+					<img src="../assets/apurba-nag-unsplash.jpg"/>
 				    <p>Website that showcases HTML, CSS, and JavaScript(three.js)</p>
 			    </div>
 		    </article>
 		    <article>
 			    <div class="inner">
 				    <h4>Product Demo Website</h4>
+					<img src="../assets/apurba-nag-unsplash.jpg"/>
+				    <p>Website that showcases HTML, CSS, aand JavaScript</p>
+			    </div>
+		    </article>
+		    <article>
+			    <div class="inner">
+				    <h4>Product Demo Website</h4>
+					<img src="../assets/apurba-nag-unsplash.jpg"/>
 				    <p>Website that showcases HTML, CSS, aand JavaScript</p>
 			    </div>
 		    </article>
@@ -46,10 +56,26 @@ button{
 }
 
 .features{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 	background: #242424;
-	width: 75vw;
     margin: 2rem;
 	padding: 1rem;
+}
+
+img{
+	height: 25vw;
+	height: 25vh;
+}
+
+.container{
+	width: 75vw;
+}
+
+.inner{
+	width: 30vw;
+	max-width: 75vw;
 }
 
 h3, span{
