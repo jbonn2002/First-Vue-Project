@@ -36,7 +36,6 @@ onMounted(() => {
       pin: true,
       scrub: 0.1,
       end: '+=3000',
-      markers: true,
     }
 })
 
